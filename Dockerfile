@@ -91,7 +91,7 @@ RUN chown nobody /app
 ENV MIX_ENV="prod"
 
 # Only copy the final release from the build stage
-COPY --from=builder --chown=nobody:root /live_flip/app/_build/${MIX_ENV}/rel/live_flip ./
+COPY --from=builder --chown=nobody:root /live_flip/app/_build/${MIX_ENV}/rel/live_flip_demo ./
 
 USER nobody
 
