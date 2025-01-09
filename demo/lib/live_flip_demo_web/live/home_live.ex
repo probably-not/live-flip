@@ -37,8 +37,8 @@ defmodule LiveFlipDemoWeb.HomeLive do
     {:noreply, assign(socket, shapes: shapes)}
   end
 
-  defp schedule_update do
-    Process.send_after(self(), :randomize, 2_000)
+  defp schedule_update(milliseconds \\ 1_000) do
+    Process.send_after(self(), :randomize, milliseconds)
   end
 
   defp randomize_classes do
