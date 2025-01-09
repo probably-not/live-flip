@@ -36,6 +36,7 @@ ENV MIX_ENV="prod"
 
 COPY mix.exs mix.lock ./
 COPY lib lib
+COPY assets assets
 
 # prepare build dir
 WORKDIR /live_flip/app
