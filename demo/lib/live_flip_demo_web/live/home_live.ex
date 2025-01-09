@@ -45,9 +45,8 @@ defmodule LiveFlipDemoWeb.HomeLive do
     %{
       top: Enum.random(10..90//10),
       left: Enum.random(10..90//10),
-      opacity: Enum.random([50, 75, 90, 100]),
-      scale: Enum.random([75, 90, 100, 110, 125]),
-      rotation: Enum.random([-180, -90, -45, 0, 45, 90, 180])
+      width: Enum.random([8, 12, 16, 20, 24]),
+      height: Enum.random([8, 12, 16, 20, 24]),
     }
   end
 
@@ -85,6 +84,8 @@ defmodule LiveFlipDemoWeb.HomeLive do
   defp shape(assigns) do
     assigns =
       assign(assigns,
+        height_class: height_to_class(assigns.height),
+        width_class: width_to_class(assigns.width),
         shape_class: shape_to_class(assigns.type),
         color_class: color_to_class(assigns.color),
         top_class: top_to_class(assigns.top),
@@ -97,7 +98,9 @@ defmodule LiveFlipDemoWeb.HomeLive do
     ~H"""
     <.flip_wrap id={@id}>
       <div class={[
-        "absolute w-16 h-16",
+        "absolute",
+        @width_class,
+        @height_class,
         @color_class,
         @shape_class,
         "shadow-lg transform -translate-x-1/2 -translate-y-1/2",
@@ -112,6 +115,8 @@ defmodule LiveFlipDemoWeb.HomeLive do
     """
   end
 
+  defp height_to_class(height), do: "h-#{height}"
+  defp width_to_class(width), do: "w-#{width}"
   defp shape_to_class(:square), do: "rounded-lg"
   defp shape_to_class(:circle), do: "rounded-full"
   defp color_to_class(:blue), do: "bg-blue-500"
