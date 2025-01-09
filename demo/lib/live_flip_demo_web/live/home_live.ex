@@ -19,7 +19,7 @@ defmodule LiveFlipDemoWeb.HomeLive do
         end)
         |> Stream.with_index()
         |> Stream.map(fn {shape, idx} -> Map.put(shape, :id, "id-#{idx}") end)
-        |> Enum.take(20)
+        |> Enum.take(100)
       else
         []
       end
@@ -49,7 +49,7 @@ defmodule LiveFlipDemoWeb.HomeLive do
       height: Enum.random([8, 12, 16, 20, 24]),
       opacity: 100,
       scale: 100,
-      rotation: 0,
+      rotation: 0
       # opacity: Enum.random([50, 75, 90, 100]),
       # scale: Enum.random([75, 90, 100, 110, 125]),
       # rotation: Enum.random([-180, -90, -45, 0, 45, 90, 180])
