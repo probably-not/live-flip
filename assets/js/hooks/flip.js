@@ -42,7 +42,7 @@ const Flip = {
         },
       ],
       {
-        duration: 10000,
+        duration: 300,
         easing: "ease-in-out",
         fill: "both",
       }
