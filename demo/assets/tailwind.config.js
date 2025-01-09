@@ -9,6 +9,8 @@ module.exports = {
   content: [
     "./js/**/*.js",
     "../lib/live_flip_demo_web.ex",
+    "../lib/live_flip_demo_web/**/*.*ex",
+    "./extra_tailwind_classes.txt",
     "../../lib/**/*.ex",
   ],
   theme: {
