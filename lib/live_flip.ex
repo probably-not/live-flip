@@ -26,7 +26,7 @@ defmodule LiveFlip do
 
   ```heex
   <.flip_wrap id="my-red-square">
-    <div class="absolute w-16 h-16 bg-red-500 rounded-lg shadow-lg transform -translate-x-1/2 -translate-y-1/2">
+    <div class="absolute w-16 h-16 bg-red-500 rounded-lg shadow-lg">
     </div>
   </.flip_wrap>
   ```
