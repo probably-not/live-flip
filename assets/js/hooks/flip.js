@@ -1,19 +1,30 @@
 const Flip = {
   child: null,
   currentBounds: null,
-  mounted() {},
+  debug: false,
+  duration: 300,
+  easing: "ease-in-out",
+  fill: "both",
+  mounted() {
+    this.debug = Object.hasOwn(this.el.dataset, "debug");
+    this.duration = parseInt(this.el.dataset.duration || "300");
+    this.easing = this.el.dataset.easing || "ease-in-out";
+    this.fill = this.el.dataset.fill || "both";
+  },
   beforeUpdate() {
     this.child = this.el.children[0];
     this.currentBounds = this.child.getBoundingClientRect();
 
-    console.log("Before Update:", {
-      bounds: {
-        left: this.currentBounds.left,
-        top: this.currentBounds.top,
-        width: this.currentBounds.width,
-        height: this.currentBounds.height,
-      },
-    });
+    if (this.debug) {
+      console.log("Before Update:", {
+        bounds: {
+          left: this.currentBounds.left,
+          top: this.currentBounds.top,
+          width: this.currentBounds.width,
+          height: this.currentBounds.height,
+        },
+      });
+    }
   },
   updated() {
     const newBounds = this.child.getBoundingClientRect();
@@ -42,33 +53,37 @@ const Flip = {
         },
       ],
       {
-        duration: 300,
-        easing: "ease-in-out",
-        fill: "both",
+        duration: this.duration,
+        easing: this.easing,
+        fill: this.fill,
       }
     );
 
-    animation.onfinish = () => {
-      requestAnimationFrame(() => {
-        const finalBounds = this.child.getBoundingClientRect();
+    if (this.debug) {
+      animation.onfinish = () => {
+        requestAnimationFrame(() => {
+          const finalBounds = this.child.getBoundingClientRect();
 
-        console.log("Animation finished:", {
-          expected: expectedFinalPosition,
-          actual: {
-            left: finalBounds.left,
-            top: finalBounds.top,
-            width: finalBounds.width,
-            height: finalBounds.height,
-          },
-          difference: {
-            x: Math.abs(finalBounds.left - expectedFinalPosition.left),
-            y: Math.abs(finalBounds.top - expectedFinalPosition.top),
-            width: Math.abs(finalBounds.width - expectedFinalPosition.width),
-            height: Math.abs(finalBounds.height - expectedFinalPosition.height),
-          },
+          console.log("Animation finished:", {
+            expected: expectedFinalPosition,
+            actual: {
+              left: finalBounds.left,
+              top: finalBounds.top,
+              width: finalBounds.width,
+              height: finalBounds.height,
+            },
+            difference: {
+              x: Math.abs(finalBounds.left - expectedFinalPosition.left),
+              y: Math.abs(finalBounds.top - expectedFinalPosition.top),
+              width: Math.abs(finalBounds.width - expectedFinalPosition.width),
+              height: Math.abs(
+                finalBounds.height - expectedFinalPosition.height
+              ),
+            },
+          });
         });
-      });
-    };
+      };
+    }
   },
   destroyed() {},
   disconnected() {},

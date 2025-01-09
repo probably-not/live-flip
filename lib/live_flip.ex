@@ -33,12 +33,29 @@ defmodule LiveFlip do
   """
   @doc type: :component
   attr :id, :string, required: true, doc: "The DOM identifier of the flip container tag."
+  attr :duration, :integer, required: false, default: 300, doc: "The duration that the animation will last."
+
+  attr :easing, :string,
+    required: false,
+    default: "ease-in-out",
+    doc: "The easing function to pass to the Web Animation API."
+
+  attr :fill, :string, required: false, default: "both", doc: "The fill function to pass to the Web Animation API."
+  attr :debug, :boolean, default: false, doc: "Add debug logs to the frontend so that you can debug the animations"
   attr :rest, :global, doc: "Additional HTML attributes to add to the flip container tag."
   slot :inner_block, required: true, doc: "The content rendered inside of the flip container tag."
 
   def flip_wrap(assigns) do
     ~H"""
-    <div id={@id} phx-hook="Flip" {@rest}>
+    <div
+      id={@id}
+      phx-hook="Flip"
+      data-duration={@duration}
+      data-easing={@easing}
+      data-fill={@fill}
+      data-debug={@debug}
+      {@rest}
+    >
       {render_slot(@inner_block)}
     </div>
     """
