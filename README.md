@@ -30,6 +30,18 @@ let liveSocket = new LiveSocket("/live", Socket, {
 })
 ```
 
+And now you're ready to roll! Just wrap your element with the  component from `LiveFlip` and you will get automatic FLIP animations!
+
+Simply render your inner content within the `LiveFlip.flip_wrap` component and move it around the page by adjusting
+its classes. The element will automatically animate its movement:
+
+```heex
+<.flip_wrap id="my-red-square">
+  <div class="absolute w-16 h-16 bg-red-500 rounded-lg shadow-lg">
+  </div>
+</.flip_wrap>
+```
+
 ### Caveats
 
 As of now (version 0.1.0), animations and FLIPs are implemented for the following:
