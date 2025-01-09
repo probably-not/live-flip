@@ -47,6 +47,12 @@ defmodule LiveFlipDemoWeb.HomeLive do
       left: Enum.random(10..90//10),
       width: Enum.random([8, 12, 16, 20, 24]),
       height: Enum.random([8, 12, 16, 20, 24]),
+      opacity: 100,
+      scale: 100,
+      rotation: 0,
+      # opacity: Enum.random([50, 75, 90, 100]),
+      # scale: Enum.random([75, 90, 100, 110, 125]),
+      # rotation: Enum.random([-180, -90, -45, 0, 45, 90, 180])
     }
   end
 
@@ -103,7 +109,7 @@ defmodule LiveFlipDemoWeb.HomeLive do
         @height_class,
         @color_class,
         @shape_class,
-        "shadow-lg transform -translate-x-1/2 -translate-y-1/2",
+        "shadow-lg",
         @top_class,
         @left_class,
         @opacity_class,
