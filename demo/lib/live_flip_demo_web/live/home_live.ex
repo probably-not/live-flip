@@ -43,8 +43,8 @@ defmodule LiveFlipDemoWeb.HomeLive do
 
   defp randomize_classes do
     %{
-      top: Enum.random(10..90//10),
-      left: Enum.random(10..90//10),
+      top: Enum.random(1..99),
+      left: Enum.random(1..99),
       width: Enum.random([8, 12, 16, 20, 24]),
       height: Enum.random([8, 12, 16, 20, 24]),
       opacity: 100,
