@@ -1,5 +1,4 @@
 import Flip from "./flip";
 
-export default {
-  Flip,
-};
+export { Flip };
+export default Flip;
