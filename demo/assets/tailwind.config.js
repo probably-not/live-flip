@@ -9,7 +9,7 @@ module.exports = {
   content: [
     "./js/**/*.js",
     "../lib/live_flip_demo_web.ex",
-    "../lib/live_flip_demo_web/**/*.*ex"
+    "../../lib/**/*.ex",
   ],
   theme: {
     extend: {
