@@ -1,16 +1,10 @@
 const Flip = {
   child: null,
   currentBounds: null,
-  scaleX: null,
-  scaleY: null,
-  mounted() {
-    this.child = this.el.children[0];
-  },
+  mounted() {},
   beforeUpdate() {
     this.child = this.el.children[0];
     this.currentBounds = this.child.getBoundingClientRect();
-    this.scaleX = this.currentBounds.width / this.child.offsetWidth;
-    this.scaleY = this.currentBounds.height / this.child.offsetHeight;
 
     console.log("Before Update:", {
       bounds: {
@@ -18,25 +12,16 @@ const Flip = {
         top: this.currentBounds.top,
         width: this.currentBounds.width,
         height: this.currentBounds.height,
-        scaleX: this.scaleX,
-        scaleY: this.scaleY,
       },
     });
   },
   updated() {
     const newBounds = this.child.getBoundingClientRect();
-    const newScaleX = newBounds.width / this.child.offsetWidth;
-    const newScaleY = newBounds.height / this.child.offsetHeight;
 
-    const parentRect = this.child.offsetParent.getBoundingClientRect();
-    const deltaX =
-      this.currentBounds.left -
-      parentRect.left -
-      (newBounds.left - parentRect.left);
-    const deltaY =
-      this.currentBounds.top -
-      parentRect.top -
-      (newBounds.top - parentRect.top);
+    const deltaX = this.currentBounds.left - newBounds.left;
+    const deltaY = this.currentBounds.top - newBounds.top;
+    const deltaW = this.currentBounds.width / newBounds.width;
+    const deltaH = this.currentBounds.height / newBounds.height;
 
     const expectedFinalPosition = {
       left: newBounds.left,
@@ -48,12 +33,12 @@ const Flip = {
     const animation = this.child.animate(
       [
         {
-          transformOrigin: "center",
-          transform: `translate(${deltaX}px, ${deltaY}px) scale(${this.scaleX}, ${this.scaleY})`,
+          transformOrigin: "top left",
+          transform: `translate(${deltaX}px, ${deltaY}px) scale(${deltaW}, ${deltaH})`,
         },
         {
-          transformOrigin: "center",
-          transform: `scale(${newScaleX}, ${newScaleY})`,
+          transformOrigin: "top left",
+          transform: `none`,
         },
       ],
       {
