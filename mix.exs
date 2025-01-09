@@ -1,7 +1,7 @@
 defmodule LiveFlip.MixProject do
   use Mix.Project
 
-  @version "0.0.1-rc.2"
+  @version "0.1.0"
 
   def project do
     [
