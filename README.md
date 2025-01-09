@@ -19,6 +19,8 @@ As of now (version 0.1.0), animations and FLIPs are implemented for the followin
 
 However, since the hook utilizes the Web Animations API and transforms, it is unable to handle if the element has transforms applied on it (yet). This is something that I want to tackle in following releases, as I get a better handle of how to compose transforms that are already on an element, with incoming transforms during an update and the transforms necessary for the FLIP to work.
 
+In addition to this caveat - the UI is non-blocking right now - this means that animations may be running as your element changes classes. I'm not currently using LiveView's `this.js` ViewHook functionality to trigger transitions - mainly because I want to target the Web Animations API and keep this hook very generic (i.e. not targeting Tailwind and not class-based). My understanding of the `this.js.transition` function is that it works by adding classes and transitioning these classes off, meaning that I would need to dynamically calculate the TailwindCSS classes necessary for the FLIP thus tying this very much to Tailwind exclusively. Unfortunately, this also means I can't cause the UI to lock or be blocked - there have been many discussions about this in the past, both on the forum and on the Slack. I'm hoping that this (as a nice use case for it) will open up the discussion again.
+
 ## Installation
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed
