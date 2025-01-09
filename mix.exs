@@ -21,6 +21,7 @@ defmodule LiveFlip.MixProject do
         links: %{"GitHub" => "https://github.com/probably-not/live-flip"},
         files: [
           "lib",
+          "assets",
           ".formatter.exs",
           "mix.exs",
           "README*",
