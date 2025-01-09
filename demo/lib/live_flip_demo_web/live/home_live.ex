@@ -127,5 +127,5 @@ defmodule LiveFlipDemoWeb.HomeLive do
   defp opacity_to_class(opacity), do: "opacity-#{opacity}"
   defp scale_to_class(scale), do: "scale-#{scale}"
   defp rotation_to_class(rotation) when rotation >= 0, do: "rotate-#{rotation}"
-  defp rotation_to_class(rotation) when rotation < 0, do: "-rotate-#{rotation}"
+  defp rotation_to_class(rotation) when rotation < 0, do: "-rotate-#{abs(rotation)}"
 end
