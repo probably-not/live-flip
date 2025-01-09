@@ -21,8 +21,7 @@ defmodule LiveFlip do
   ## Examples
 
   Simply render your inner content within this component and move it around the page by adjusting
-  its classes. The element will automatically animate its movement. You can also change the scale,
-  rotation, and opacity, all of which will animate as the element is adjusted:
+  its classes. The element will automatically animate its movement:
 
   ```heex
   <.flip_wrap id="my-red-square">
