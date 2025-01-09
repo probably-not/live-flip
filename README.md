@@ -10,6 +10,26 @@ A demo project is provided here in the demo folder, it is a simple demo app to d
 
 The easiest way to start is to install (see the below Installation section), and add the Flip hook to your hooks in your app's `app.js` file. Once you have that, you can wrap any element in the `flip_wrap` component and receive all the animations for free!
 
+In your app.js, or wherever you define your hooks, simply import the following:
+
+```javascript
+import Flip from "../../deps/live_flip/assets/js/hooks"
+```
+
+Or, if you are in an umbrella project:
+
+```javascript
+import Flip from "../../../../deps/live_flip/assets/js/hooks"
+```
+
+And then add the hook to your Hooks object:
+
+```javascript
+let liveSocket = new LiveSocket("/live", Socket, {
+  hooks: { Flip },
+})
+```
+
 ### Caveats
 
 As of now (version 0.1.0), animations and FLIPs are implemented for the following:
