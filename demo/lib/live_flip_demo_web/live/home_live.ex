@@ -95,9 +95,8 @@ defmodule LiveFlipDemoWeb.HomeLive do
       )
 
     ~H"""
-    <div
-      id={@id}
-      class={[
+    <.flip_wrap id={@id}>
+      <div class={[
         "absolute w-16 h-16",
         @color_class,
         @shape_class,
@@ -107,9 +106,9 @@ defmodule LiveFlipDemoWeb.HomeLive do
         @opacity_class,
         @rotation_class,
         @scale_class
-      ]}
-    >
-    </div>
+      ]}>
+      </div>
+    </.flip_wrap>
     """
   end
 
