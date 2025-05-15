@@ -42,9 +42,12 @@ defmodule LiveFlip do
   attr :fill, :string, required: false, default: "both", doc: "The fill function to pass to the Web Animation API."
   attr :debug, :boolean, default: false, doc: "Add debug logs to the frontend so that you can debug the animations"
   attr :rest, :global, doc: "Additional HTML attributes to add to the flip container tag."
+  attr :class, :list, default: []
   slot :inner_block, required: true, doc: "The content rendered inside of the flip container tag."
 
   def flip_wrap(assigns) do
+    assigns = assign_new(assigns, :has_classes?, fn -> assigns.class != [] end)
+
     ~H"""
     <div
       id={@id}
@@ -53,6 +56,8 @@ defmodule LiveFlip do
       data-easing={@easing}
       data-fill={@fill}
       data-debug={@debug}
+      data-has-classes={@has_classes?}
+      class={@class}
       {@rest}
     >
       {render_slot(@inner_block)}
