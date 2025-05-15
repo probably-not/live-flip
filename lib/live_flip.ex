@@ -46,9 +46,7 @@ defmodule LiveFlip do
   slot :inner_block, required: true, doc: "The content rendered inside of the flip container tag."
 
   def flip_wrap(assigns) do
-    assigns = assign_new(assigns, :has_classes?, fn -> assigns.class != [] end)
-
-    ~H""
+    ~H"""
     <div
       id={@id}
       phx-hook="Flip"
@@ -56,7 +54,7 @@ defmodule LiveFlip do
       data-easing={@easing}
       data-fill={@fill}
       data-debug={@debug}
-      data-has-classes={@has_classes?}
+      data-has-classes={@class != []}
       class={@class}
       {@rest}
     >
