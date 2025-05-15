@@ -46,7 +46,7 @@ defmodule LiveFlip do
   attr :class, :list,
     default: [],
     doc:
-      "List of classes for the to the flip container tag. If any classes are passed, the container will be the flipped element, otherwise it will be its first child."
+      "List of classes for the flip container tag. If any classes are passed, the container itself will be the flipped element. When no classes are passed, the first child of the wrapped element will be the flipped element."
 
   slot :inner_block, required: true, doc: "The content rendered inside of the flip container tag."
 
