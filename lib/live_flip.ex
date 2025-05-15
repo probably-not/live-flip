@@ -42,7 +42,12 @@ defmodule LiveFlip do
   attr :fill, :string, required: false, default: "both", doc: "The fill function to pass to the Web Animation API."
   attr :debug, :boolean, default: false, doc: "Add debug logs to the frontend so that you can debug the animations"
   attr :rest, :global, doc: "Additional HTML attributes to add to the flip container tag."
-  attr :class, :list, default: []
+
+  attr :class, :list,
+    default: [],
+    doc:
+      "List of classes for the to the flip container tag. If any classes are passed, the container will be the flipped element, otherwise it will be its first child."
+
   slot :inner_block, required: true, doc: "The content rendered inside of the flip container tag."
 
   def flip_wrap(assigns) do
