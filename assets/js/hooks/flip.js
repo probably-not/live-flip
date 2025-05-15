@@ -10,10 +10,11 @@ const Flip = {
     this.duration = parseInt(this.el.dataset.duration || "300");
     this.easing = this.el.dataset.easing || "ease-in-out";
     this.fill = this.el.dataset.fill || "both";
+    this.hasClasses = Object.hasOwn(this.el.dataset, "hasClasses");
   },
   beforeUpdate() {
-    this.child = this.el.children[0];
-    this.currentBounds = this.child.getBoundingClientRect();
+    this.animatingEl = this.hasClasses ? this.el : this.el.children[0];
+    this.currentBounds = this.animatingEl.getBoundingClientRect();
 
     if (this.debug) {
       console.log("Before Update:", {
@@ -27,7 +28,7 @@ const Flip = {
     }
   },
   updated() {
-    const newBounds = this.child.getBoundingClientRect();
+    const newBounds = this.animatingEl.getBoundingClientRect();
 
     const deltaX = this.currentBounds.left - newBounds.left;
     const deltaY = this.currentBounds.top - newBounds.top;
@@ -41,7 +42,7 @@ const Flip = {
       height: newBounds.height,
     };
 
-    const animation = this.child.animate(
+    const animation = this.animatingEl.animate(
       [
         {
           transformOrigin: "top left",
@@ -62,7 +63,7 @@ const Flip = {
     if (this.debug) {
       animation.onfinish = () => {
         requestAnimationFrame(() => {
-          const finalBounds = this.child.getBoundingClientRect();
+          const finalBounds = this.animatingEl.getBoundingClientRect();
 
           console.log("Animation finished:", {
             expected: expectedFinalPosition,

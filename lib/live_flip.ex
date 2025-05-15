@@ -48,7 +48,7 @@ defmodule LiveFlip do
   def flip_wrap(assigns) do
     assigns = assign_new(assigns, :has_classes?, fn -> assigns.class != [] end)
 
-    ~H"""
+    ~H""
     <div
       id={@id}
       phx-hook="Flip"
