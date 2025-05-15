@@ -1,0 +1,6 @@
+{
+  "name": "live_flip",
+  "version": "0.2.0",
+  "license": "MIT",
+  "main": "assets/js/hooks/index.js"
+}
